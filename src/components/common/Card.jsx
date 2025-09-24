@@ -2,7 +2,7 @@
 export function Card({ children, className = "", onClick = null }) {
     return (
         <div onClick={onClick}
-            className={`rounded-2xl shadow-md border border-gray-200 bg-white ${className}`}
+            className={`p-4 col-span-1 shadow-md rounded-2xl bg-white ${className}`}
         >
             {children}
         </div>
@@ -11,7 +11,7 @@ export function Card({ children, className = "", onClick = null }) {
 
 export function CardHeader({ children, className = "" }) {
     return (
-        <div className={`p-4 border-b border-gray-100 font-semibold ${className}`}>
+        <div className={`p-4 border-b border-gray-100 font-semibold p4 ${className}`}>
             {children}
         </div>
     );
@@ -32,14 +32,15 @@ export function CardFooter({ children, className = "" }) {
 export function Button({
     children,
     className = "",
-    variant = "default",
-    size = "md",
+    variant = "vintage",
+    size = "sm",
     ...props
 }) {
     const base =
         "inline-flex items-center justify-center rounded-xl font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2";
 
     const variants = {
+        vintage: "w-full bg-vintageBrown text-white py-2 rounded-lg shadow hover:opacity-90",
         default: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500",
         outline: "border border-gray-300 bg-white hover:bg-gray-50 text-gray-700",
         ghost: "bg-transparent hover:bg-gray-100 text-gray-700",

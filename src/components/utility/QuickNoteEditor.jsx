@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "../common/Card";
-import { MinusCircle } from "lucide-react";
+import { MinusCircle, PlusCircleIcon } from "lucide-react";
 
 // -------------------- Sub components --------------------
 export default function QuickNoteEditor() {
@@ -29,47 +29,57 @@ export default function QuickNoteEditor() {
     };
 
     return (
-        <Card className="p-4">
-            <CardContent className="p-4">
+        <Card>
+            <CardContent>
+                {/* Header */}
                 <div className="mb-3 flex items-center justify-between">
                     <div>
                         <div className="text-sm text-gray-500">Ghi chú nhanh</div>
-                        <div className="font-semibold">Notes</div>
+                        <div className="font-semibold text-lg">Notes</div>
                     </div>
                 </div>
 
                 {/* Input */}
-                <div className="flex gap-2">
+                <div className="flex gap-2 mb-4">
                     <input
                         type="text"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        placeholder="Ghi chú nhanh..."
-                        className="flex-1 border p-2 rounded"
+                        placeholder="Viết ghi chú..."
+                        className="flex-1 px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />
                     <button
                         onClick={() => {
                             addNote(text);
                             setText("");
                         }}
-                        className="px-3 py-1 bg-blue-600 text-white rounded"
+                        className="p-2  bg-vintageBrown text-vintageCream text-white rounded-lg hover:opacity-90 transition"
                     >
-                        Add
+                        <PlusCircleIcon size={20} />
                     </button>
                 </div>
 
                 {/* Notes list */}
-                <div className="mt-3 space-y-2  overflow-y-auto">
+                <div className="space-y-2 max-h-60 overflow-y-auto">
                     {notes.map((n) => (
-                        <div key={n.id} className="flex items-center justify-between gap-2 group">
-                            <div className="p-2 border rounded bg-gray-50 text-sm flex-1">{n.text}</div>
+                        <div
+                            key={n.id}
+                            className="flex items-center justify-between gap-2 group bg-gray-50 border rounded-lg p-2 hover:bg-gray-100 transition"
+                        >
+                            <div className="text-sm flex-1">{n.text}</div>
                             <button
                                 onClick={() => removeNote(n.id)}
-                                className="text-red-500 hover:text-red-700 opacity-0 group-hover:opacity-100 transition">
+                                className="text-red-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition"
+                            >
                                 <MinusCircle size={18} />
                             </button>
                         </div>
                     ))}
+                    {notes.length === 0 && (
+                        <div className="text-sm text-gray-400 italic text-center py-4">
+                            Chưa có ghi chú nào
+                        </div>
+                    )}
                 </div>
             </CardContent>
         </Card>

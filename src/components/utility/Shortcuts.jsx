@@ -10,25 +10,25 @@ export default function Shortcuts() {
                 </div>
 
                 <div className="mt-3 flex flex-col gap-2">
-                    <button className="px-3 py-2 bg-blue-600 text-white rounded">
+                    <button className="px-3 py-2 bg-vintageBrown text-white rounded">
                         <Link
                             to="/trips/create"
                             className="flex items-center gap-2">
-                            Tạo chuyến đi
+                            Lên lịch cho chuyến đi
                         </Link>
                     </button>
-                    <button className="px-3 py-2 bg-green-600 text-white rounded">
+                    <button className="px-3 py-2 bg-vintageBrown text-white rounded">
                         <Link
-                            to="/locations/create"
+                            to="/"
                             className="flex items-center gap-2">
                             Thêm điểm đến cho chuyến đi
                         </Link>
                     </button>
-                    <button className="px-3 py-2 bg-yellow-500 text-white rounded">
+                    <button className="px-3 py-2 bg-vintageBrown text-white rounded">
                         <Link
-                            to="/calendar"
+                            to="/"
                             className="flex items-center gap-2">
-                            Mở Lịch
+                            Mở bản đồ
                         </Link>
                     </button>
                 </div>

@@ -11,7 +11,7 @@ export default function Breadcrumb({ items = [] }) {
                 <li className="flex items-center">
                     <Link to="/" className="flex items-center hover:text-vintageGreen">
                         <Home size={16} className="mr-1" />
-                        Home
+                        Trang chủ
                     </Link>
                     {items.length > 0 && <span className="mx-2 text-gray-400">›</span>}
                 </li>
