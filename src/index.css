@@ -3,5 +3,19 @@
 @tailwind utilities;
 
 body {
-  @apply bg-vintageCream font-serifVintage font-serifVintage; 
+  @apply bg-vintageCream font-serifVintage font-serifVintage;
+}
+
+/* css cho page utility */
+@keyframes progressAnim {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-progress {
+  animation: progressAnim 60s linear forwards;
 }

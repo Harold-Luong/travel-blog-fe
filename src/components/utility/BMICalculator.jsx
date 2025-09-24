@@ -1,4 +1,3 @@
-// utility/BMICalculator.jsx
 import { useState } from "react";
 import { Card, CardContent } from "../common/Card";
 
@@ -24,38 +23,52 @@ export default function BMICalculator() {
     };
 
     return (
-        <Card className="p-4">
-            <CardContent className="space-y-4">
-                <div className="text-lg font-semibold tracking-wide border-b border-vintageBrown pb-1">
-                    Tính chỉ số BMI
+        <Card>
+            <CardContent>
+                {/* Tiêu đề */}
+                <div className="pb-3 border-b border-vintageBrown mb-4">
+                    <h2 className="text-base font-semibold text-gray-800">
+                        Tính chỉ số BMI
+                    </h2>
+                    <p className="text-xs text-gray-500">
+                        (Body Mass Index)
+                    </p>
                 </div>
-                <div className="space-y-2">
+
+                {/* Form nhập liệu */}
+                <div className="space-y-3">
                     <input
                         type="number"
                         placeholder="Cân nặng (kg)"
                         value={weight}
                         onChange={(e) => setWeight(e.target.value)}
-                        className="w-full border rounded px-3 py-2" />
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-vintageBrown focus:border-vintageBrown transition"
+                    />
                     <input
                         type="number"
                         placeholder="Chiều cao (cm)"
                         value={height}
                         onChange={(e) => setHeight(e.target.value)}
-                        className="w-full border rounded px-3 py-2" />
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-vintageBrown focus:border-vintageBrown transition"
+                    />
                 </div>
 
+                {/* Nút tính toán */}
                 <button
                     onClick={calculateBMI}
-                    className="w-full bg-vintageBrown text-white py-2 rounded-lg shadow hover:opacity-90">
+                    className="mt-4 w-full bg-vintageBrown text-white py-2 rounded-lg font-medium shadow-md hover:opacity-90 transition"
+                >
                     Tính BMI
                 </button>
 
+                {/* Kết quả */}
                 {bmi && (
-                    <div className="text-center mt-4">
-                        <p className="text-lg font-medium">
-                            Chỉ số BMI: <span className="font-bold">{bmi}</span>
+                    <div className="text-center mt-5 p-3 bg-gray-50 rounded-lg border">
+                        <p className="text-lg font-semibold text-gray-800">
+                            Chỉ số BMI:{" "}
+                            <span className="text-vintageBrown">{bmi}</span>
                         </p>
-                        <p className="text-sm text-gray-600">{status}</p>
+                        <p className="text-sm text-gray-600 mt-1">{status}</p>
                     </div>
                 )}
             </CardContent>

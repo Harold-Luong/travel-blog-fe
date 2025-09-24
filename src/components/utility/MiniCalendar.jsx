@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Card, CardContent } from "../common/Card";
-import { solarDateToLunar, formatLunar, isVegetarianDayByLunar } from "../../api/lunar";
+import { Card, CardContent, CardFooter } from "../common/Card";
+import { solarDateToLunar, formatLunar, isVegetarianDayByLunar } from "../../lib/lunar";
 
 const LOCALE = "vi-VN";
 const TIMEZONE = "Asia/Ho_Chi_Minh";
 
-export default function Clock() {
+export default function MiniCalendar() {
     const [current, setCurrent] = useState(new Date());
 
     const solarDate = new Date();
@@ -18,8 +18,8 @@ export default function Clock() {
     }, []);
 
     return (
-        <Card className="p-4 col-span-1 shadow-md rounded-2xl bg-white">
-            <CardContent className="flex flex-col items-center text-center space-y-2">
+        <Card>
+            <CardContent className="items-center text-center space-y-2">
                 {/* Title */}
                 <div className="text-xs text-gray-500">
                     Giờ hiện tại ({TIMEZONE})
@@ -40,18 +40,20 @@ export default function Clock() {
                     })}
                 </div>
 
+            </CardContent>
+            <CardFooter className="items-center text-center">
                 {/* Lunar date */}
-                <div className="text-[11px] text-gray-400 italic">
-                    {formatLunar(lunaDate)}
+                <div className="text-[13px] text-gray-400 italic font-medium">
+                    Âm lịch ngày {formatLunar(lunaDate)}
                 </div>
 
                 {/* Vegetarian day */}
                 {isVegetarianDay && (
-                    <div className="px-2 py-1 mt-2 text-xs font-medium text-green-700 bg-green-100 rounded-full">
+                    <div className="px-2 py-1 mt-2 text-[13px] font-medium text-green-700 bg-green-100 rounded-full">
                         🌱 Ngày ăn chay
                     </div>
                 )}
-            </CardContent>
+            </CardFooter>
         </Card>
     );
 }
