@@ -1,0 +1,49 @@
+import { NavLink } from "react-router-dom";
+import { Layers } from "lucide-react";
+import { useMemo } from "react";
+
+export default function Header() {
+    const slogans = [
+        "Mỗi chuyến đi là một câu chuyện",
+        "Khám phá thế giới – Khám phá chính mình",
+        "Đi để nhớ – Viết để giữ",
+        "Ghi dấu hành trình – Chia sẻ trải nghiệm",
+        "Lưu giữ ký ức, kể lại hành trình",
+        "Hãy đi đi - Chần chừ - Trời tối mất"
+    ];
+
+    const slogan = useMemo(() => {
+        const index = Math.floor(Math.random() * slogans.length);
+        return slogans[index];
+    }, []);
+
+    const navLinkClass = ({ isActive }) =>
+        isActive
+            ? "flex items-center gap-2 text-yellow-300 font-bold"
+            : "flex items-center gap-2 hover:text-blue-400 transition-colors";
+
+    return (
+        <header className="bg-vintageBrown text-white px-6 py-4 flex justify-between items-center shadow-md">
+
+            {/* Logo + Slogan */}
+            <div className="flex flex-col">
+                <h1 className="text-2xl font-bold">
+                    <NavLink to="/" className={navLinkClass}>
+                        My Travel Blog
+                    </NavLink>
+                </h1>
+                <p className="text-md italic font-slogan text-yellow-200 drop-shadow-md">{slogan}</p>
+            </div>
+
+            {/* Navigation */}
+            <ul className="flex gap-6 text-sm items-center">
+                <li>
+                    <NavLink to="/utility" className={navLinkClass}>
+                        <Layers className="w-5 h-5" />
+                        <span className="hidden sm:inline">Tiện ích</span>
+                    </NavLink>
+                </li>
+            </ul>
+        </header>
+    );
+}
