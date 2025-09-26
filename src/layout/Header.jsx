@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Layers } from "lucide-react";
+import { Layers, Map } from "lucide-react";
 import { useMemo } from "react";
 
 export default function Header() {
@@ -37,6 +37,12 @@ export default function Header() {
 
             {/* Navigation */}
             <ul className="flex gap-6 text-sm items-center">
+                <li>
+                    <NavLink to="/map" className={navLinkClass}>
+                        <Map className="w-5 h-5" />
+                        <span className="hidden sm:inline">Bản đồ</span>
+                    </NavLink>
+                </li>
                 <li>
                     <NavLink to="/utility" className={navLinkClass}>
                         <Layers className="w-5 h-5" />

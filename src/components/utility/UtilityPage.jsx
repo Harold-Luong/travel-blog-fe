@@ -7,8 +7,8 @@ import PriceCoin from "./price-coin/PriceCoin";
 import RandomAnyThing from "./RandomAnyThing";
 import BMICalculator from "./BMICalculator";
 import RandomThought from "./RandomThought";
-import Shortcuts from "./Shortcuts";
 import CalculatePercent from "./CalculatePercent";
+import CountDays from "./CountDays";
 
 export default function UtilityPage() {
     return (
@@ -43,8 +43,8 @@ export default function UtilityPage() {
                     {/* Right column */}
                     <div className="lg:col-span-4 space-y-4">
                         <PriceCoin />
+                        <CountDays />
                         <CalculatePercent />
-                        <Shortcuts />
                     </div>
                 </div>
             </div>
