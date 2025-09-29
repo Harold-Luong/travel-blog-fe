@@ -3,7 +3,7 @@ import Layout from "./layout/Layout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UtilityPage from "./components/utility/UtilityPage";
-
+import MapVietNam from "./components/map/MapVietNam";
 function NotFound() {
   return <div className="p-6">Page not found</div>;
 }
@@ -16,6 +16,10 @@ export default function App() {
         <Routes>
           {/* Layout bọc chung */}
           <Route element={<Layout />}>
+            <Route
+              path="/map"
+              element={<MapVietNam />}
+            />
             <Route
               path="/utility"
               element={<UtilityPage />}

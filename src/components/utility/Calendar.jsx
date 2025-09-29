@@ -80,24 +80,24 @@ export default function Calendar() {
                     {weeks.map((week, i) => (
                         <div key={i} className="grid grid-cols-7 gap-1 mb-1">
                             {week.map((d, j) => {
-                                if (!d) return <div key={j} className="h-10"></div>;
+                                if (!d) return <div key={j} className="h-13"></div>;
 
                                 const lunarDate = solarDateToLunar(d);
 
                                 return (
                                     <div
                                         key={j}
-                                        className={`text-center p-2 rounded cursor-pointer ${d ? 'bg-white' : 'bg-transparent'}`}
+                                        className={`text-center p-1 rounded cursor-pointer ${d ? 'bg-white' : 'bg-transparent'}`}
                                     >
                                         <div className="relative">
-                                            <div className={`w-full h-10 flex flex-col items-center justify-center  ${isFasting(d)
+                                            <div className={`text-sm w-full h-13 flex flex-col items-center justify-center  ${isFasting(d)
                                                 ? 'bg-yellow-100 rounded-md border border-yellow-300'
                                                 : ''}`}>
-                                                <div className={`text-sm ${d.toDateString() === current.toDateString()
-                                                    ? 'font-semibold text-red-800 rounded-md border border-red-300 p-2'
+                                                <div className={`${d.toDateString() === current.toDateString()
+                                                    ? 'font-semibold text-red-600 text-md'
                                                     : 'text-gray-800'}`}>{d.getDate()}
                                                 </div>
-                                                <div className="text-[10px] text-gray-400 mt-1">
+                                                <div className="text-[13px] text-gray-400 mt-1">
                                                     {lunarDate.lunarDay === 1
                                                         ? `${lunarDate.lunarDay}/${lunarDate.lunarMonth}`
                                                         : lunarDate.lunarDay}
