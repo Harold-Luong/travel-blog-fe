@@ -7,6 +7,7 @@ import MapVietNam from "./components/map/MapVietNam";
 import LoginPage from './components/auth/LoginPage';
 import ProfilePage from './components/ProfilePage';
 import ProtectedRoute from "./components/ProtectedRoute"
+import RegisterForm from './components/auth/RegisterForm';
 function NotFound() {
   return <div className="p-6">Page not found</div>;
 }
@@ -34,7 +35,10 @@ export default function App() {
               path="/login"
               element={<LoginPage />}
             />
-
+            <Route
+              path="/register"
+              element={<RegisterForm />}
+            />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

@@ -1,52 +1,41 @@
-import { useNavigate, useLocation } from "react-router-dom";
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
-import { useAuth } from "../../context/AuthContext";
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+import { NavLink } from "react-router-dom";
+import LoginForm from "./base-jwt/LoginForm";
+import LoginWithGoogle from "./google/LoginWithGoogle";
 
 export default function LoginPage() {
-    const { login } = useAuth();
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
-
-    const handleGoogleLogin = (response) => {
-        try {
-            const decoded = jwtDecode(response.credential);
-            const data = {
-                accessToken: response.credential,
-                user: {
-                    email: decoded.email,
-                    name: decoded.name,
-                    picture: decoded.picture,
-                    family_name: decoded.family_name,
-                    given_name: decoded.given_name,
-                    email_verified: decoded.email_verified
-                },
-                expiresAt: decoded.exp * 1000,
-            };
-
-            login(data);
-
-            navigate(from, { replace: true });
-        } catch (err) {
-            console.error("Decode error:", err);
-        }
-    };
-
-    const handleError = () => {
-        console.log("Google Login Failed");
-    };
-
     return (
         <div className="flex items-center justify-center min-h-screen bg-vintage-pattern">
-            <div className="bg-white p-8 rounded-xl shadow-md w-96 border border-yellow-800 text-center">
-                <h2 className="text-2xl font-bold mb-6 text-yellow-900">
+            <div className="bg-white p-8 rounded-2xl shadow-lg w-96 border border-yellow-700">
+
+                {/* Title */}
+                <h2 className="text-3xl font-extrabold mb-6 text-yellow-900 text-center">
                     Đăng nhập
                 </h2>
-                <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-                    <GoogleLogin onSuccess={handleGoogleLogin} onError={handleError} />
-                </GoogleOAuthProvider>
+
+                {/* Login form */}
+                <LoginForm />
+
+                {/* Divider */}
+                <div className="flex items-center my-6">
+                    <div className="flex-grow h-px bg-gray-300"></div>
+                    <span className="px-3 text-sm text-gray-500">hoặc</span>
+                    <div className="flex-grow h-px bg-gray-300"></div>
+                </div>
+
+                {/* Google login */}
+                <LoginWithGoogle />
+
+
+                {/* Register link */}
+                <p className="mt-6 text-sm text-gray-600">
+                    Chưa có tài khoản?{" "}
+                    <NavLink
+                        to="/register"
+                        className="text-yellow-800 font-semibold hover:text-yellow-600 transition-colors"
+                    >
+                        Đăng ký ngay
+                    </NavLink>
+                </p>
             </div>
         </div>
     );

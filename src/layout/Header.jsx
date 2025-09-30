@@ -1,11 +1,11 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { Layers, LogInIcon, Map, LogOutIcon, User } from "lucide-react";
+import { NavLink } from "react-router-dom";
+import { Layers, LogInIcon, Map, User } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 export default function Header() {
-    const navigate = useNavigate();
-    const { user, isAuthenticated, logout } = useAuth();
+
+    const { user, isAuthenticated } = useAuth();
     const [imgError, setImgError] = useState(false);
 
     const slogans = [
@@ -64,25 +64,20 @@ export default function Header() {
                         </NavLink>
                     </li>
                 ) : (
-                    <>
-                        <li >
-                            <NavLink to="/profile" className={navLinkClass}>
-                                {!imgError && user?.picture ? (
-                                    <img
-                                        src={user.picture}
-                                        alt="avatar"
-                                        className="w-8 h-8 rounded-full border border-white shadow"
-                                        onError={() => setImgError(true)}
-                                    />
-                                ) : (
-
-                                    <User className="w-8 h-8 rounded-full border border-white shadow" />
-                                )}
-                                <span className="hidden sm:inline">{user.given_name}</span>
-                            </NavLink>
-                        </li>
-
-                    </>
+                    <li >
+                        <NavLink to="/profile" className={navLinkClass}>
+                            {!imgError && user?.avatar ? (
+                                <img
+                                    src={user.avatar}
+                                    alt="avatar"
+                                    className="w-8 h-8 rounded-full border border-white shadow object-cover"
+                                    onError={() => setImgError(true)}
+                                />
+                            ) : (
+                                <User className="w-8 h-8 rounded-full border border-white shadow object-cover" />
+                            )}
+                        </NavLink>
+                    </li>
                 )}
             </ul>
         </header>
