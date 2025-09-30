@@ -1,8 +1,13 @@
-import { NavLink } from "react-router-dom";
-import { Layers, Map } from "lucide-react";
-import { useMemo } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Layers, LogInIcon, Map, LogOutIcon, User } from "lucide-react";
+import { useMemo, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 export default function Header() {
+    const navigate = useNavigate();
+    const { user, isAuthenticated, logout } = useAuth();
+    const [imgError, setImgError] = useState(false);
+
     const slogans = [
         "Mỗi chuyến đi là một câu chuyện",
         "Khám phá thế giới – Khám phá chính mình",
@@ -24,7 +29,6 @@ export default function Header() {
 
     return (
         <header className="bg-vintageBrown text-white px-6 py-4 flex justify-between items-center shadow-md">
-
             {/* Logo + Slogan */}
             <div className="flex flex-col">
                 <h1 className="text-2xl font-bold">
@@ -32,7 +36,9 @@ export default function Header() {
                         My Travel Blog
                     </NavLink>
                 </h1>
-                <p className="text-md italic font-slogan text-yellow-200 drop-shadow-md">{slogan}</p>
+                <p className="text-md italic font-slogan text-yellow-200 drop-shadow-md">
+                    {slogan}
+                </p>
             </div>
 
             {/* Navigation */}
@@ -49,6 +55,35 @@ export default function Header() {
                         <span className="hidden sm:inline">Tiện ích</span>
                     </NavLink>
                 </li>
+
+                {!isAuthenticated ? (
+                    <li>
+                        <NavLink to="/login" className={navLinkClass}>
+                            <LogInIcon className="w-5 h-5" />
+                            <span className="hidden sm:inline">Đăng nhập</span>
+                        </NavLink>
+                    </li>
+                ) : (
+                    <>
+                        <li >
+                            <NavLink to="/profile" className={navLinkClass}>
+                                {!imgError && user?.picture ? (
+                                    <img
+                                        src={user.picture}
+                                        alt="avatar"
+                                        className="w-8 h-8 rounded-full border border-white shadow"
+                                        onError={() => setImgError(true)}
+                                    />
+                                ) : (
+
+                                    <User className="w-8 h-8 rounded-full border border-white shadow" />
+                                )}
+                                <span className="hidden sm:inline">{user.given_name}</span>
+                            </NavLink>
+                        </li>
+
+                    </>
+                )}
             </ul>
         </header>
     );

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent } from "../../common/Card.jsx";
 import { formatPrice } from "../../../lib/common.js"
 import InputCoin from "./InputCoin.jsx";
@@ -6,7 +6,7 @@ import CoinItem from "./CoinItem.jsx";
 
 export default function PriceCoin() {
     const [coinsByMarket, setCoinsByMarket] = useState({ spot: [], futures: [] });
-    const [market, setMarket] = useState("spot");
+    const [market, setMarket] = useState("futures");
     const [error, setError] = useState("");
     const [coinCheck, setCoinCheck] = useState(null);
 

@@ -4,9 +4,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UtilityPage from "./components/utility/UtilityPage";
 import MapVietNam from "./components/map/MapVietNam";
+import LoginPage from './components/auth/LoginPage';
+import ProfilePage from './components/ProfilePage';
+import ProtectedRoute from "./components/ProtectedRoute"
 function NotFound() {
   return <div className="p-6">Page not found</div>;
 }
+
 
 
 export default function App() {
@@ -18,14 +22,21 @@ export default function App() {
           <Route element={<Layout />}>
             <Route
               path="/map"
-              element={<MapVietNam />}
+              element={<ProtectedRoute> <MapVietNam /></ProtectedRoute>}
             />
             <Route
               path="/utility"
-              element={<UtilityPage />}
+              element={<ProtectedRoute> <UtilityPage /></ProtectedRoute>}
+            />
+            <Route
+              path="/profile"
+              element={<ProtectedRoute> <ProfilePage /></ProtectedRoute>}
+            />
+            <Route
+              path="/login"
+              element={<LoginPage />}
             />
 
-            {/* Trang không tìm thấy */}
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
