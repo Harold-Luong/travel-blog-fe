@@ -1,40 +1,64 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { getMeApi } from "../api/login"
 
 const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
     const [expiresAt, setExpiresAt] = useState(null);
     const [loading, setLoading] = useState(true);
 
-
     useEffect(() => {
-        const storedToken = localStorage.getItem("accessToken");
-        const storedUser = localStorage.getItem("user");
-        const storedExpiresAt = localStorage.getItem("expiresAt");
+        const initAuth = async () => {
+            const token = localStorage.getItem("accessToken");
+            const expiresAt = localStorage.getItem("expiresAt");
+            const user = localStorage.getItem("user");
 
-        if (storedToken && storedExpiresAt) {
-            const now = Date.now();
-            if (now < parseInt(storedExpiresAt, 10)) {
-                setToken(storedToken);
-                setUser(storedUser ? JSON.parse(storedUser) : null);
-                setExpiresAt(parseInt(storedExpiresAt, 10));
+            if (token && expiresAt && Date.now() < +expiresAt) {
+                setToken(token);
+                setExpiresAt(+expiresAt);
+                if (user) {
+                    setUser(JSON.parse(user));
+                } else {
+                    try {
+                        const profile = await getMeApi(token);
+                        setUser(profile);
+                        localStorage.setItem("user", JSON.stringify(profile));
+                    } catch {
+                        logout();
+                    }
+                }
             } else {
                 logout();
             }
-        }
+            setLoading(false);
+        };
 
-        setLoading(false);
+        initAuth();
     }, []);
 
-    const login = (data) => {
+    const login = async (data) => {
         localStorage.setItem("accessToken", data.accessToken);
-        localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("expiresAt", data.expiresAt);
+        const profile = await getMeApi(data.accessToken);
+        setUser(profile);
         setToken(data.accessToken);
-        setUser(data.user);
         setExpiresAt(data.expiresAt);
+    };
+
+    const updateUser = (data) => {
+        if (data) {
+            localStorage.setItem("user", JSON.stringify(data));
+            setUser(data);
+        }
+    };
+
+    const me = (data) => {
+        if (data) {
+            localStorage.setItem("user", JSON.stringify(data));
+            setUser(data);
+        }
     };
 
     const logout = () => {
@@ -55,6 +79,8 @@ export function AuthProvider({ children }) {
                 user,
                 login,
                 logout,
+                me,
+                updateUser,
                 isAuthenticated: !!token && !isExpired,
                 expiresAt,
                 loading
@@ -64,6 +90,6 @@ export function AuthProvider({ children }) {
     );
 }
 
-export function useAuth() {
+export const useAuth = () => {
     return useContext(AuthContext);
-}
+};
