@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import Pagination from "../components/common/Pagination";
 import { fetchTrips } from "../api/trip"; // Assuming you have a fetchTrips function in api/trip.js
-import TripCard from "../components/trip/TripCard";
-
+import TripCard from "../components/trip-itinerary/get/TripCard";
 
 export default function Home() {
     const [page, setPage] = useState(0);
@@ -14,7 +13,7 @@ export default function Home() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetchTrips(1, page, 3);
+                const response = await fetchTrips(page, 3);
                 if (Array.isArray(response.data)) {
                     setTrips({ data: response.data, totalPages: response.totalPages });
                 } else {

@@ -2,11 +2,8 @@ import { useState, useEffect } from "react";
 import { Card, CardContent } from "../common/Card";
 import { MinusCircle, PlusCircleIcon } from "lucide-react";
 
-// -------------------- Sub components --------------------
 export default function QuickNoteEditor() {
     const [text, setText] = useState("");
-
-    // Quick notes
     const [notes, setNotes] = useState(() => {
         try {
             return JSON.parse(localStorage.getItem("utility_notes_v1") || "[]");
@@ -53,7 +50,7 @@ export default function QuickNoteEditor() {
                             addNote(text);
                             setText("");
                         }}
-                        className="p-2  bg-vintageBrown text-vintageCream text-white rounded-lg hover:opacity-90 transition"
+                        className="p-2 bg-vintageBrown text-vintageCream text-white rounded-lg hover:opacity-90 transition"
                     >
                         <PlusCircleIcon size={20} />
                     </button>
