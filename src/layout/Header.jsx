@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
-import { Layers, LogInIcon, Map, User } from "lucide-react";
+import { Layers, LocateIcon, LogInIcon, Map, Plane, User } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import TripItineraryPage from "../components/trip-itinerary/create/TripItineraryPage";
 
 export default function Header() {
 
@@ -43,6 +44,18 @@ export default function Header() {
 
             {/* Navigation */}
             <ul className="flex gap-6 text-sm items-center">
+                <li>
+                    <NavLink to="/my-trip" className={navLinkClass}>
+                        <LocateIcon className="w-5 h-5" />
+                        <span className="hidden sm:inline">My trip</span>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/trip-itinerary" className={navLinkClass}>
+                        <Plane className="w-5 h-5" />
+                        <span className="hidden sm:inline">Tạo hành trình</span>
+                    </NavLink>
+                </li>
                 <li>
                     <NavLink to="/map" className={navLinkClass}>
                         <Map className="w-5 h-5" />

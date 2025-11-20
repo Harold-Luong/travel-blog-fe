@@ -50,10 +50,9 @@ export const registerApi = async (form) => {
     }
 };
 
-
 export const getMeApi = async (token) => {
     try {
-        const api = "http://localhost:8080/api/travel-blog/me";
+        const api = "/api/travel-blog/me";
         const response = await axios.get(api, {
             headers: {
                 "Authorization": `Bearer ${token}`,   // thêm JWT vào header

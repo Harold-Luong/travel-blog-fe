@@ -18,7 +18,7 @@ export function CardHeader({ children, className = "" }) {
 }
 
 export function CardContent({ children, className = "" }) {
-    return <div className={`p-4 ${className}`}>{children}</div>;
+    return <div className={`  ${className}`}>{children}</div>;
 }
 
 export function CardFooter({ children, className = "" }) {

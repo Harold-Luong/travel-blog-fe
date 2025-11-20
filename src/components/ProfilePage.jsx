@@ -13,7 +13,7 @@ export default function ProfilePage() {
         bio: user?.bio || "",
     });
     const [avatar, setAvatar] = useState(null);
-    const [preview, setPreview] = useState(user?.picture || null);
+    const [preview, setPreview] = useState(user?.avatar || null);
     const [loading, setLoading] = useState(false);
 
     // Update preview when user changes (e.g. after context update)

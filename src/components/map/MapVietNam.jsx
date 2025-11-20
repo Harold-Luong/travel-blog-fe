@@ -68,11 +68,11 @@ export default function MapVietNam() {
                     currentMarkerRef.current.setLngLat([longitude, latitude]);
                 }
 
-                //toast.success("Đã định vị vị trí hiện tại!");
+                toast.success("Đã định vị vị trí hiện tại!");
             },
             (err) => {
                 isLocating.current = false;
-                //toast.error("Không lấy được vị trí: " + err.message);
+                toast.error("Không lấy được vị trí: " + err.message);
             },
             { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
         );
