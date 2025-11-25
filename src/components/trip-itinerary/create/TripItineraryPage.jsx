@@ -8,7 +8,6 @@ import RightDrawerMapReview from "./RightDrawerMapReview";
 import MapCommon from "../../map/MapCommon";
 import generateDistinctColors from "./GenerateDistinctColors";
 
-
 /**
  *ex:
  * {
@@ -53,7 +52,7 @@ export default function TripItineraryPage() {
         for (let i = 0; i < diffDays; i++) {
             const d = new Date(s);
             d.setDate(s.getDate() + i);
-            newDays.push({ dayIndex: i, date: d.toLocaleDateString("en-CA"), activities: [] });
+            newDays.push({ dayIndex: i, date: d.toLocaleDateString("en-GB"), activities: [] });
         }
 
         setTripRequest((prev) => ({ ...prev, days: newDays }));
@@ -72,7 +71,6 @@ export default function TripItineraryPage() {
             return { ...prev, days };
         });
     };
-
 
     const handleEditActivity = (dayIndex, activityIndex, activity) => {
         setTripRequest((prev) => {
@@ -124,7 +122,7 @@ export default function TripItineraryPage() {
     }
     return (
         <div className="space-y-6 ">
-            <RightDrawerMapReview days={tripRequest.days} colors={colors} />
+            {/* <RightDrawerMapReview days={tripRequest.days} colors={colors} /> */}
             <Breadcrumb
                 items={[
                     { label: "Kế hoạch chuyến đi", href: "/trip-itinerary" },

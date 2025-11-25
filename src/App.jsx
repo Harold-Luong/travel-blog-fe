@@ -9,8 +9,9 @@ import ProfilePage from './components/profile/ProfilePage';
 import ProtectedRoute from "./components/ProtectedRoute"
 import RegisterForm from './components/auth/RegisterForm';
 import TripItineraryPage from './components/trip-itinerary/create/TripItineraryPage';
-import MyTripDetails from './components/trip-itinerary/get/MyTripDetails';
-import MyTrip from './components/trip-itinerary/get/MyTrip';
+import MyTripList from './components/trip-itinerary/get/list/MyTripList';
+import MyTripDetails from './components/trip-itinerary/get/detail/MyTripDetails';
+
 function NotFound() {
   return <div className="p-6">Page not found</div>;
 }
@@ -29,7 +30,7 @@ export default function App() {
           <Route element={<Layout />}>
             <Route
               path="/my-trip"
-              element={<ProtectedRoute> <MyTrip /></ProtectedRoute>}
+              element={<ProtectedRoute> <MyTripList /></ProtectedRoute>}
             />
             <Route
               path="/trip-itinerary"

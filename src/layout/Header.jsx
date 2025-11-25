@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
-import { Layers, LocateIcon, LogInIcon, Map, Plane, User } from "lucide-react";
+import { Layers, LogInIcon, MapPinCheck, MapPinned, MapPinPlus, User } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import TripItineraryPage from "../components/trip-itinerary/create/TripItineraryPage";
+
 
 export default function Header() {
 
@@ -11,11 +11,11 @@ export default function Header() {
 
     const slogans = [
         "Mỗi chuyến đi là một câu chuyện",
-        "Khám phá thế giới – Khám phá chính mình",
-        "Đi để nhớ – Viết để giữ",
-        "Ghi dấu hành trình – Chia sẻ trải nghiệm",
-        "Lưu giữ ký ức, kể lại hành trình",
-        "Hãy đi đi - Chần chừ - Trời tối mất"
+        // "Khám phá thế giới – Khám phá chính mình",
+        // "Đi để nhớ – Viết để giữ",
+        // "Ghi dấu hành trình – Chia sẻ trải nghiệm",
+        // "Lưu giữ ký ức, kể lại hành trình",
+        // "Hãy đi đi - Chần chừ - Trời tối mất"
     ];
 
     const slogan = useMemo(() => {
@@ -29,12 +29,12 @@ export default function Header() {
             : "flex items-center gap-2 hover:text-blue-400 transition-colors";
 
     return (
-        <header className="bg-vintageBrown text-white px-6 py-4 flex justify-between items-center shadow-md">
+        <header className="bg-vintageBrown text-white px-4 py-2 flex justify-between items-center shadow-md">
             {/* Logo + Slogan */}
             <div className="flex flex-col">
                 <h1 className="text-2xl font-bold">
                     <NavLink to="/" className={navLinkClass}>
-                        My Travel Blog
+                        Blog du lịch của tôi
                     </NavLink>
                 </h1>
                 <p className="text-md italic font-slogan text-yellow-200 drop-shadow-md">
@@ -46,19 +46,19 @@ export default function Header() {
             <ul className="flex gap-6 text-sm items-center">
                 <li>
                     <NavLink to="/my-trip" className={navLinkClass}>
-                        <LocateIcon className="w-5 h-5" />
-                        <span className="hidden sm:inline">My trip</span>
+                        <MapPinCheck className="w-5 h-5" />
+                        <span className="hidden sm:inline">Hành trình</span>
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to="/trip-itinerary" className={navLinkClass}>
-                        <Plane className="w-5 h-5" />
-                        <span className="hidden sm:inline">Tạo hành trình</span>
+                        <MapPinPlus className="w-5 h-5" />
+                        <span className="hidden sm:inline">Lên lịch cho hành trình</span>
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to="/map" className={navLinkClass}>
-                        <Map className="w-5 h-5" />
+                        <MapPinned className="w-5 h-5" />
                         <span className="hidden sm:inline">Bản đồ</span>
                     </NavLink>
                 </li>

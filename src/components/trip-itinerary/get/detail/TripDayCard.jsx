@@ -1,18 +1,23 @@
 import { MapPin } from "lucide-react";
 import ActivityItem from "./ActivityItem";
 
-export default function TripDayCard({ day, color }) {
+export default function TripDayCard({ day, color, handleClickMapPin }) {
+
     return (
         <div className="border rounded-xl p-6 shadow-sm bg-white">
             <div className="relative mb-3">
                 <h2 className="text-xl font-semibold">
-                    Ngày {day.dayIndex + 1} — {day.date}
+                    Ngày {day.dayIndex} — {new Date(day.date).toLocaleDateString('en-GB')}
                 </h2>
-                <MapPin
-                    className="absolute top-0 right-0 w-7 h-7"
-                    style={{ color: color }}
-                />
-            </div>
+
+                <button
+                    onClick={handleClickMapPin}
+                    title={"Màu trên Map"}
+                    className="absolute top-0 right-0 w-7 h-7">
+                    <MapPin style={{ color: color }}
+                    />
+                </button>
+            </div >
 
             <p className="text-gray-500 mb-4">{day.note}</p>
 
@@ -21,6 +26,6 @@ export default function TripDayCard({ day, color }) {
                     <ActivityItem key={index} activity={activity} date={day.date} />
                 ))}
             </div>
-        </div>
+        </div >
     );
 }
