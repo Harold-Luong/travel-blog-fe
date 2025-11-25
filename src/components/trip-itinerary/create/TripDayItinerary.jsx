@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Edit2, PlusCircleIcon, PlusIcon, SaveAllIcon, Trash2, X } from "lucide-react";
+import { Edit2, PlusCircleIcon, SaveAllIcon, Trash2, X } from "lucide-react";
 import LocationSearch from "./LocationSearch";
 
 /**
@@ -121,14 +121,13 @@ export default function DayItinerary({ colors, day, onAddActivity = null, onEdit
             <div
                 className="text-white font-bold text-lg flex items-center justify-center w-10 tracking-wide"
                 style={{
-                    backgroundColor: colors[dayIndex] || "#c27312ff", // amber-50 = #b4790bff
+                    backgroundColor: colors[dayIndex] || "#c27312ff",
                     writingMode: "vertical-rl",
                     textOrientation: "mixed",
                 }}
             >
                 Ngày {dayIndex + 1}
             </div>
-
 
             {/* Activities list */}
             <div className="flex-1 p-2 md:p-4s space-y-4">

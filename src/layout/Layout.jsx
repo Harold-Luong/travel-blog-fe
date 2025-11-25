@@ -8,7 +8,7 @@ export default function Layout() {
         <div className="bg-gray-100 min-h-screen flex flex-col">
             <Header />
             <main className="container mx-auto p-1 w-5/6 flex-1">
-                <div className="p-6 space-y-6 bg-vintageCream min-h-screen text-vintageBrown">
+                <div className="p-2 space-y-6 bg-vintageCream min-h-screen text-vintageBrown">
                     <Outlet />
                 </div>
             </main>

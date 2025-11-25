@@ -1,4 +1,4 @@
-import { CalendarDays, Tag } from "lucide-react";
+import { CalendarDays, MoveRight, Tag } from "lucide-react";
 
 export default function TripHeader({ trip }) {
     return (
@@ -15,8 +15,10 @@ export default function TripHeader({ trip }) {
 
                 <div className="flex items-center text-gray-600 gap-2">
                     <CalendarDays className="w-5 h-5" />
-                    <span className="text-sm">
-                        {trip.startDate} → {trip.endDate}
+                    <span className="text-sm flex items-center gap-1">
+                        {new Date(trip.startDate).toLocaleDateString("en-GB")}
+                        <MoveRight className="w-4 h-4" />
+                        {new Date(trip.endDate).toLocaleDateString("en-GB")}
                     </span>
                 </div>
             </div>
